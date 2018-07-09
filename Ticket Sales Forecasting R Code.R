@@ -1,7 +1,8 @@
 #Run this entire block of code to set up time series analysis
 library(TSA)
 library(uroot)
-data <- read.table("/Users/Alex/Desktop/salesdata.txt")
+library(tseries)
+data <- read.table("salesdata.txt")
 temp <-ts(data)
 temp<-rev(temp)
 BadTicketSales <- ts(temp, start=c(1925,1), end=c(2014,1), frequency=1)
@@ -39,11 +40,11 @@ shapiro.test(DiffLogData)
 
 #Looking for stationarity of Diff
 plot(DiffData.ts, type='l')
-ADF.test(DiffData.ts, selectlags=list(mode=0), itsd=c(1,0,0))
+adf.test(DiffData.ts)
 
 #Looking for stationarity of DiffLog
 plot(DiffLogData.ts, type='l')
-ADF.test(DiffLogData.ts, selectlags=list(mode=0), itsd=c(1,0,0))
+adf.test(DiffLogData.ts)
 
 #Model Specification for DiffData.ts
 #Looking for MA process
@@ -79,7 +80,7 @@ arima(DiffData.ts, order=c(5,0,1), method='ML')
 #Results - Insignificance, Throw Out
 
 #SubsetARIMA(6,1,5) with only AR1,3,4,6 MA1,5
-arima(DiffLogTicketSales30, order=c(6,0,5), fixed=c(NA,0,NA,NA,0,NA,NA,0,0,0,NA,NA), method='ML')
+arima(DiffLogData.ts, order=c(6,0,5), fixed=c(NA,0,NA,NA,0,NA,NA,0,0,0,NA,NA), method='ML')
 #Results - Insignificance, Throw Out
 
 #Models for DiffLogData
@@ -157,4 +158,4 @@ plot(TicketSales30)
 plot(TicketSales30No9495, type='l')
 plot(log(TicketSales30No9495), type='l')
 y=ts(TicketSales30No9495)
-ADF.test(y, selectlags=list(mode=0), itsd=c(1,0,0))
+adf.test(y)
