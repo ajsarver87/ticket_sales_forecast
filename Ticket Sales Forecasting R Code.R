@@ -134,14 +134,19 @@ plot(DiffLogData.ts, col="red"); lines(fitted(c), col='blue')
 
 #Code Block for Forcasting Plot and 10 Years into the Future
 plot(c)
-predict(c, n.ahead=10)
+predict <- predict(c, n.ahead=10)
+predict
 
-#Compare SeasonalIMA(1,1) with orginal
-plot(DiffData.ts, col="red"); lines(fitted(a), col='blue')
+#Backtransform the forecasted time series to ticket sales
+previous <- x[28]
 
-#Code Block for Forcasting Plot and 10 Years into the Future
-plot(a)
-predict(a, n.ahead=10)
+for (i in 1:10){
+  trans[i] <- previous*exp(predict$pred[i])
+  previous <- trans[i]
+}
+
+trans
+plot(trans, type="l")
 
 #You are going to Have to use a recursive formula to backtransform the Predictions  which is:
 #
@@ -151,6 +156,9 @@ predict(a, n.ahead=10)
 #     P = Prediction in transformed Scale
 #     T = prediction in normal ticket sales numbers (what we want)
 #
+#NOTE: This is done by the code above.
+
+
 
 #Plots for Paper
 plot(TicketSales)
