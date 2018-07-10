@@ -1,3 +1,0 @@
-1) Run through R code, updating and fixing any outdated packages (Done!)
-2) backtransform results in R and create forecasted amounts
-3) Verify Results in paper or update
