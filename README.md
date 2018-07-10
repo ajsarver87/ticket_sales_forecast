@@ -3,3 +3,23 @@ A project to project ticket sales for the Chicago Cubs
 
 Contents of Repository:
 
+.gitignore 
+standard .gitignore file
+
+Project.R 
+The project file that was created by R studio.
+
+README.md 
+This readme file explaining the contents of the repository.
+
+Ticket Sales Forecasting R Code.R 
+The R code used in analyzing the salesdata.txt data and to produce all the graphs in the stat 578 paper.docx.
+
+salesdata.txt 	
+The total number of tickets sold for the Chicago Cubs from the 1925 to 2014 on a yearly basis.
+
+stat 578 paper.docx 	
+Paper summarizing the methodology and the results of the analysis of the time series. 
+
+ticket_sales_forecast.Rproj 	
+The project file created by R Studio.
